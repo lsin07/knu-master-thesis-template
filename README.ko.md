@@ -42,9 +42,9 @@ kpsewhich IEEEtran.bst
 
 ### VS Code 사용 (선택)
 
-이 디렉터리를 폴더로 열고 권장 확장인 **LaTeX Workshop** (`james-yu.latex-workshop`)을 설치하세요. 포함된 `.vscode/settings.json`은 파일 변경 시 XeLaTeX을 실행하도록 설정되어 있습니다. `thesis.tex`를 연 상태에서 **LaTeX Workshop: Build LaTeX project** 명령을 사용할 수도 있습니다.
+이 디렉터리를 폴더로 열고 권장 확장인 **LaTeX Workshop** (`james-yu.latex-workshop`)을 설치하세요. 포함된 `.vscode/settings.json`은 파일 변경 시 latexmk를 통해 XeLaTeX과 BibTeX을 자동 실행하도록 설정되어 있습니다. `thesis.tex`를 연 상태에서 **LaTeX Workshop: Build LaTeX project** 명령을 사용할 수도 있습니다.
 
-현재 빌드 레시피는 XeLaTeX을 한 번만 실행하며 BibTeX은 실행하지 않습니다. 참고문헌과 교차 참조를 완성하려면 아래 터미널 빌드를 사용하세요. `tex/` 안의 파일을 편집하다가 루트 문서가 잘못 선택되면 `thesis.tex`를 열고 빌드하세요.
+기본 빌드 레시피는 **latexmk (XeLaTeX + BibTeX)**입니다. latexmk가 필요한 경우 BibTeX을 실행하고, 목차·인용·교차 참조가 갱신될 때까지 XeLaTeX을 반복 실행합니다. `latexmk`, `xelatex`, `bibtex` 명령이 PATH에 있어야 합니다. `tex/` 안의 파일을 편집하다가 루트 문서가 잘못 선택되면 `thesis.tex`를 열고 빌드하세요.
 
 ### Overleaf 사용
 

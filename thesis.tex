@@ -41,11 +41,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
+% Unnumbered title pages both reset the page counter to 1.
+\hypersetup{pageanchor=false}
 \makecover
 \makeinnercover
 \pagebreak
 
 \pagenumbering{roman} %\frontmatter
+\hypersetup{pageanchor=true}
 \setstretch{1.5}
 
 \tableofcontents \pagebreak

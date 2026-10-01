@@ -42,9 +42,9 @@ Keep the `fonts/` directory beside `thesis.tex`. The style loads these files dir
 
 ### VS Code (optional)
 
-Open this directory as a folder and install the recommended **LaTeX Workshop** extension (`james-yu.latex-workshop`). The included `.vscode/settings.json` runs XeLaTeX on file changes. Use **LaTeX Workshop: Build LaTeX project** with `thesis.tex` active.
+Open this directory as a folder and install the recommended **LaTeX Workshop** extension (`james-yu.latex-workshop`). The included `.vscode/settings.json` automatically builds with XeLaTeX and BibTeX through latexmk on file changes. Use **LaTeX Workshop: Build LaTeX project** with `thesis.tex` active.
 
-The supplied recipe performs only one XeLaTeX pass; it does not run BibTeX. For a complete bibliography and updated cross-references, use the terminal build below. If building a file in `tex/` separately selects the wrong root, open `thesis.tex` before building.
+The default recipe is **latexmk (XeLaTeX + BibTeX)**. latexmk runs BibTeX when needed and repeats XeLaTeX until the contents, citations, and cross-references are updated. The `latexmk`, `xelatex`, and `bibtex` commands must be available on PATH. If building a file in `tex/` separately selects the wrong root, open `thesis.tex` before building.
 
 ### Overleaf
 
