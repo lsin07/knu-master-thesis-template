@@ -119,6 +119,7 @@
 \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
 \newcommand*{\department}[1]{\gdef\@department{#1}}
 \renewcommand*{\title}[1]{\gdef\@title{#1}}
+\newcommand*{\submitdate}[1]{\gdef\@submitdate{#1}}
 \newcommand*{\makecover}{%
   \begin{titlepage}
   \vspace{\baselineskip}
@@ -166,7 +167,7 @@
    % Date
    \begin{Center}
    %{\DTMlangsetup[en-US]{showdayofmonth=false}
-   \fontsize{12pt}{14.8pt}\titlefont{\textbf{June 2020}}%}
+   \fontsize{12pt}{14.8pt}\titlefont{\textbf{\@submitdate}}%}
    \end{Center}\par
 
    % Graduate School and University name
@@ -207,7 +208,7 @@
 
     \vspace{0.3cm}
     \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefont School of Electronics Engineering, Major in Signal Processing \\ The Graduate School}
+    {\fontsize{12pt}{14.8pt}\titlefont \@department \\ The Graduate School}
     \end{Center}
 
     \begin{Center}
@@ -215,7 +216,7 @@
     \end{Center}
 
     \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefont Approved as a qualified thesis of \@author \\ for the degree of Master of Science by the Evaluation Committee}
+    {\fontsize{12pt}{14.8pt}\titlefont Approved as a qualified thesis of \@author \\ for the degree of Master of Science \\ by the Evaluation Committee}
     \end{Center}
 
     % \begin{Center}
@@ -226,7 +227,7 @@
        % Date
    \begin{Center}
    %{\DTMlangsetup[en-US]{showdayofmonth=false}
-   \fontsize{12pt}{14.8pt}\titlefont{June 2020}%}
+   \fontsize{12pt}{14.8pt}\titlefont{\@submitdate}%}
    \end{Center}
 
     \vspace{\baselineskip}
