@@ -17,7 +17,7 @@
   [2020/03/21 v0.01 LaTeX package for KNU's Master of Science Thesis]
 
 % Document spacing
-\RequirePackage[paperheight=11.69in,paperwidth=8.27in,left=1.57in,right=1.57in,top=1.8in,bottom=1.9in,headheight=1in]{geometry}
+\RequirePackage[paperheight=11.69in,paperwidth=8.27in,left=0.78in,right=0.78in,top=1.8in,bottom=1.9in,headheight=1in]{geometry}
 
 %%%%%%%%%%%%
 % Packages %
@@ -35,7 +35,11 @@
 \setmainfont{TeX Gyre Termes}
 \RequirePackage{kotex} % for korean text
 % Use the bundled Batang font for Korean body text.
-\setmainhangulfont{batang.ttc}[Path = fonts/, AutoFakeBold = 2, AutoFakeSlant = 0.2]
+% Hangul has no small-cap forms; retain ordinary Hangul in small-cap headings.
+\setmainhangulfont{batang.ttc}[
+  Path = fonts/, AutoFakeBold = 2, AutoFakeSlant = 0.2,
+  SmallCapsFont = batang.ttc, SmallCapsFeatures = {Letters = ResetAll}
+]
 \RequirePackage[subfigure]{tocloft}
 \RequirePackage{titlesec}
 \RequirePackage{chngpage}
@@ -96,12 +100,16 @@
 
 % Title font
 
-\newfontfamily{\titlefontfamily}{batang}[Extension = .ttc, Path = fonts/]
-\newfontfamily{\titlefontitfamily}{unbatang-IT}[Extension = .ttf, Path = fonts/, Ligatures=TeX]
+% Batang has no separate bold face; register a synthetic bold shape.
+\newfontfamily{\titlefontfamily}{batang}[Extension = .ttc, Path = fonts/, AutoFakeBold = 2]
+% The bundled file already contains italic glyphs; register it as the italic face.
+\newfontfamily{\titlefontitfamily}{unbatang-IT}[
+  Extension = .ttf, Path = fonts/, ItalicFont = *, Ligatures=TeX
+]
 
 
 \newcommand*{\titlefontregular}{\titlefontfamily}
-\newcommand*{\titlefont}{\titlefontfamily\addfontfeatures{FakeBold=2}}
+\newcommand*{\titlefont}{\titlefontfamily\bfseries}
 \newcommand*{\titlefontit}{\titlefontitfamily\itshape}
 
 % Footer font
@@ -135,7 +143,7 @@
   \vspace{\baselineskip}
   \begin{Center}
 %   \setmainfont{Times}
-  \textbf{Thesis for the Degree of Master of Science}\par
+  Thesis for the Degree of Master of Science\par
 %   \fontsize{12pt}{25.2pt}
   \end{Center}
 
