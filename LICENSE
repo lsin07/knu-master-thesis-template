@@ -1,0 +1,45 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+SPDX-License-Identifier: CC-BY-4.0
+
+Original template copyright:
+  (c) Gwenaelle Cunha Sergio (gwena.cs@gmail.com)
+  (c) Dennis Singh Moirangthem (mdennissingh@gmail.com)
+
+Original work: PhD Thesis Template - KNU
+Source: https://www.overleaf.com/latex/templates/phd-thesis-template-knu/wzwwnhnmbdjq
+The Overleaf listing identifies the original template as CC BY 4.0.
+The original authors' copyright notices are retained in thesis.tex and thesis.sty.
+
+This template adaptation and its accompanying README documentation are
+provided under Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+License summary: https://creativecommons.org/licenses/by/4.0/
+Full legal terms: https://creativecommons.org/licenses/by/4.0/legalcode.en
+
+You may share and adapt the licensed material, including commercially,
+subject to the license terms. When sharing it, credit the original authors,
+retain applicable notices, link to the license, and indicate modifications.
+Do not imply endorsement by the original authors or impose additional
+restrictions that prevent exercise of the licensed rights.
+This notice is a summary and reference to the license, not its full text;
+the full legal terms at the link above govern.
+
+Modification notice
+-------------------
+This repository adapts the template for a Master of Science thesis and
+includes Korean font and layout adjustments, circled approval marks,
+VS Code configuration, and English/Korean usage documentation.
+It is a modified version of the original work.
+
+Scope and third-party materials
+------------------------------
+This notice covers the template material and accompanying documentation.
+It does not relicense third-party font files in fonts/ or other third-party
+assets. Those materials remain subject to their respective rights and
+license terms; their presence here is not evidence of a CC BY 4.0 grant.
+No separate font license files are included in this repository at the time
+of writing. Check the relevant rights-holder terms before redistributing
+those files.
+
+Using this template does not by itself place your original thesis text,
+research, or independently supplied figures under CC BY 4.0.
