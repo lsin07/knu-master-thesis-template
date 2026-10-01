@@ -110,6 +110,16 @@
 \newcommand*{\footerfont}{\footerfontfamily\bfseries}
 \newcommand*{\footerfontitalic}{\footerfontfamily\itshape}
 
+% circled Korean
+\usepackage{tikz}
+\newfontfamily\korcircledfont{malgungothic-R.ttf}[Path=fonts/]
+
+\newcommand{\kocircled}[1]{%
+  \tikz[baseline=(char.base)]{
+    \node[draw,circle,inner sep=0.1pt, line width=0.3pt](char){\korcircledfont\fontsize{7.5pt}{7.5pt}\selectfont #1};
+  }%
+}
+
 %%%%%%%%%%%%%%%%
 %  Cover page  %
 %%%%%%%%%%%%%%%%
@@ -238,9 +248,9 @@
     \setstretch{2.0}
     \begin{flushright}
         \begin{tabular}{c l}
-        {\fontsize{12pt}{14.8pt}\titlefontregular Chairperson} & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profA}}\\
-            & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profB}}\\
-            & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profC}}\\
+        {\fontsize{12pt}{14.8pt}\titlefontregular Chairperson} & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profA}}\kocircled{인}\\
+            & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profB}}\kocircled{인}\\
+            & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profC}}\kocircled{인}\\
         \end{tabular}
     \end{flushright}
     \vspace{\baselineskip}
