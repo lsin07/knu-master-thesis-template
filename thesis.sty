@@ -17,7 +17,7 @@
   [2020/03/21 v0.01 LaTeX package for KNU's Master of Science Thesis]
 
 % Document spacing
-\RequirePackage[paperheight=11.69in,paperwidth=8.27in,left=0.78in,right=0.78in,top=1.8in,bottom=1.9in,headheight=1in]{geometry}
+\RequirePackage[paperwidth=190mm,paperheight=260mm,left=20mm,right=20mm,top=30mm,bottom=30mm,headheight=12pt]{geometry}
 
 %%%%%%%%%%%%
 % Packages %
@@ -37,7 +37,7 @@
 % Use the bundled Batang font for Korean body text.
 % Hangul has no small-cap forms; retain ordinary Hangul in small-cap headings.
 \setmainhangulfont{batang.ttc}[
-  Path = fonts/, AutoFakeBold = 2, AutoFakeSlant = 0.2,
+  Path = fonts/, AutoFakeBold = 2.5, AutoFakeSlant = 0.2,
   SmallCapsFont = batang.ttc, SmallCapsFeatures = {Letters = ResetAll}
 ]
 \RequirePackage[subfigure]{tocloft}
@@ -101,7 +101,7 @@
 % Title font
 
 % Batang has no separate bold face; register a synthetic bold shape.
-\newfontfamily{\titlefontfamily}{batang}[Extension = .ttc, Path = fonts/, AutoFakeBold = 2]
+\newfontfamily{\titlefontfamily}{batang}[Extension = .ttc, Path = fonts/, AutoFakeBold = 2.5]
 % The bundled file already contains italic glyphs; register it as the italic face.
 \newfontfamily{\titlefontitfamily}{unbatang-IT}[
   Extension = .ttf, Path = fonts/, ItalicFont = *, Ligatures=TeX
@@ -118,21 +118,37 @@
 \newcommand*{\footerfont}{\footerfontfamily\bfseries}
 \newcommand*{\footerfontitalic}{\footerfontfamily\itshape}
 
-% circled Korean
-\usepackage{tikz}
-\newfontfamily\korcircledfont{malgungothic-R.ttf}[Path=fonts/]
-
-\newcommand{\kocircled}[1]{%
-  \tikz[baseline=(char.base)]{
-    \node[draw,circle,inner sep=0.1pt, line width=0.3pt](char){\korcircledfont\fontsize{7.5pt}{7.5pt}\selectfont #1};
-  }%
+% Word reference: Times New Roman, regular weight. Keep the body font intact.
+\IfFontExistsTF{Times New Roman}
+  {\newfontfamily\coverfont{Times New Roman}}
+  {\newfontfamily\coverfont{TeX Gyre Termes}}
+% Positions measured from the supplied PDF, expressed as fractions of
+% page height for the original 190 x 260 mm thesis format.
+% Font sizes remain physical sizes; text is never scaled to fit.
+\RequirePackage{tikz}
+\newsavebox{\frontcontent}
+\newcommand{\frontposition}[3]{%
+  \sbox{\frontcontent}{\begin{minipage}{\dimexpr\paperwidth-40mm\relax}
+    \centering\setstretch{1}\setlength{\parskip}{0pt}
+    #3\par
+  \end{minipage}}%
+  \ifdim\dimexpr\ht\frontcontent+\dp\frontcontent\relax>#2\paperheight
+    \PackageWarning{thesis}{Front-page block at #1 exceeds its reserved height}%
+  \fi
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north,inner sep=0pt,outer sep=0pt]
+      at ([yshift=-#1\paperheight]current page.north)
+      {\usebox{\frontcontent}};
+  \end{tikzpicture}%
 }
-
-%%%%%%%%%%%%%%%%
-%  Cover page  %
-%%%%%%%%%%%%%%%%
-% \newcommande{\name}[number of arguments]{definition}
-%\newcommand*{\@supervisor}{\texttt{\string\supervisor} currently not set. Please fix this.}
+\newcommand*{\frontblock}[3]{%
+  {\fontsize{#1}{#2}\selectfont #3\par}%
+}
+\newcommand*{\approvalstamp}{%
+  \tikz[baseline=(seal.base)]{
+    \node[draw,circle,inner sep=0.3pt,line width=0.3pt]
+      (seal){\titlefontregular\fontsize{8bp}{8bp}\selectfont 인};}%
+}
 \renewcommand*{\author}[1]{\gdef\@author{#1}}
 \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
 \newcommand*{\department}[1]{\gdef\@department{#1}}
@@ -140,137 +156,39 @@
 \newcommand*{\submitdate}[1]{\gdef\@submitdate{#1}}
 \newcommand*{\makecover}{%
   \begin{titlepage}
-  \vspace{\baselineskip}
-  \begin{Center}
-%   \setmainfont{Times}
-  Thesis for the Degree of Master of Science\par
-%   \fontsize{12pt}{25.2pt}
-  \end{Center}
-
-  % Title
-  \vspace{\baselineskip}
-  \vspace{\baselineskip}
-%   \vspace{\baselineskip}
-%   \vspace{\baselineskip}
-  \begin{adjustwidth}{-2cm}{-2cm}
-  \begin{Center}
-  \setstretch{1.5}{\fontsize{21pt}{25.2pt}\titlefont{\textbf{\@title}}\par}
-  \end{Center}\par
-  \end{adjustwidth}
-
-
-  % Department
-  \vspace{\baselineskip}
-  \vspace{\baselineskip}
-  \vspace{\baselineskip}
-  \vspace{\baselineskip}
-  \begin{Center}
-   \fontsize{12pt}{14.8pt}\titlefont{\@department}
-   \end{Center}\par
-   \begin{Center}
-   \fontsize{12pt}{14.8pt}\titlefont{The Graduate School}
-   \end{Center}\par
-
-   % Author
-   \vspace{\baselineskip}
-   \vspace{\baselineskip}
-   \vspace{\baselineskip}
-   \begin{Center}
-    {\fontsize{14pt}{16.8pt}\titlefont{\textbf{\@author}}\par}
-   \end{Center}\par
-   \vspace{\baselineskip}
-   \vspace{\baselineskip}
-   \vspace*{\fill}
-
-   % Date
-   \begin{Center}
-   %{\DTMlangsetup[en-US]{showdayofmonth=false}
-   \fontsize{12pt}{14.8pt}\titlefont{\textbf{\@submitdate}}%}
-   \end{Center}\par
-
-   % Graduate School and University name
-   \vspace{\baselineskip}
-   \begin{Center}
-   {\fontsize{16pt}{19.2pt}\footerfont{The Graduate School}\par}
-   \end{Center}
-   % University name
-   \begin{Center}
-   {\fontsize{16pt}{19.2pt}\footerfont{Kyungpook National University}\par}
-   \end{Center}\par
-  {\pagebreak}
+    \coverfont\mdseries
+    \frontposition{.118}{.05}{\frontblock{12bp}{14.4bp}{Thesis for the Degree of Master of Science}}
+    \frontposition{.211}{.15}{\frontblock{21bp}{29.4bp}{\@title}}
+    \frontposition{.395}{.10}{\frontblock{12bp}{20bp}{\@department\\The Graduate School}}
+    \frontposition{.517}{.05}{\frontblock{14bp}{16.8bp}{\@author}}
+    \frontposition{.819}{.04}{\frontblock{12bp}{14.4bp}{\@submitdate}}
+    \frontposition{.874}{.09}{\frontblock{16bp}{20.5bp}{The Graduate School\\Kyungpook National University}}
+    \null
   \end{titlepage}
 }
 
-%%%%%%%%%%%%%%%%%%%%
-% Inner cover page %
-%%%%%%%%%%%%%%%%%%%%
 \newcommand*{\profA}[1]{\gdef\@profA{#1}}
 \newcommand*{\profB}[1]{\gdef\@profB{#1}}
 \newcommand*{\profC}[1]{\gdef\@profC{#1}}
-\newcommand*{\makeinnercover}{
+\newcommand*{\makeinnercover}{%
   \begin{titlepage}
-
-    \vspace{\baselineskip}
-    \vspace{\baselineskip}
-    \begin{adjustwidth}{-2cm}{-2cm}
-    \begin{Center}
-    \setstretch{1.1}{\fontsize{21pt}{25.2pt}\titlefont{\@title}\par}
-    \end{Center}
-    \end{adjustwidth}
-
-    \vspace{0.3cm}
-    \setstretch{1}
-    \begin{Center}
-        {\fontsize{14pt}{16.8pt}\titlefont{\@author}\par}
-    \end{Center}
-
-    \vspace{0.3cm}
-    \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefont \@department \\ The Graduate School}
-    \end{Center}
-
-    \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefont Supervised by Professor \@supervisor}
-    \end{Center}
-
-    \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefont Approved as a qualified thesis of \@author \\ for the degree of Master of Science \\ by the Evaluation Committee}
-    \end{Center}
-
-    % \begin{Center}
-    %     {\DTMlangsetup[en-US]{showdayofmonth=false}
-    %   \fontsize{12pt}{14.8pt}\titlefont\textbf{\today}}
-    % \end{Center}
-
-       % Date
-   \begin{Center}
-   %{\DTMlangsetup[en-US]{showdayofmonth=false}
-   \fontsize{12pt}{14.8pt}\titlefont{\@submitdate}%}
-   \end{Center}
-
-    \vspace{\baselineskip}
-    % \vspace{\baselineskip}
-    \vspace{\baselineskip}
-
-    % Committee members
-    \setstretch{2.0}
-    \begin{flushright}
-        \begin{tabular}{c l}
-        {\fontsize{12pt}{14.8pt}\titlefontregular Chairperson} & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profA}}\kocircled{인}\\
-            & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profB}}\kocircled{인}\\
-            & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profC}}\kocircled{인}\\
-        \end{tabular}
-    \end{flushright}
-    \vspace{\baselineskip}
-    % \vspace{\baselineskip}
-    \vspace{\baselineskip}
-
-
-    \setstretch{1.2}
-    \begin{Center}
-    {\fontsize{14pt}{16.8pt}\titlefont The Graduate School Council \\  Kyungpook National University}
-    \end{Center}
-  {\pagebreak}
+    \coverfont\mdseries
+    \frontposition{.116}{.10}{\frontblock{21bp}{29.4bp}{\@title}}
+    \frontposition{.247}{.04}{\frontblock{14bp}{16.8bp}{\@author}}
+    \frontposition{.302}{.08}{\frontblock{12bp}{20bp}{\@department\\The Graduate School}}
+    \frontposition{.386}{.075}{\frontblock{12bp}{16bp}{Supervised by Professor \@supervisor}}
+    \frontposition{.571}{.095}{\frontblock{12bp}{22bp}{Approved as a qualified thesis of \@author\\
+      for the degree of Master of Science\\by the Evaluation Committee}}
+    \frontposition{.679}{.04}{\frontblock{12bp}{14.4bp}{\@submitdate}}
+    \frontposition{.733}{.14}{%
+      \fontsize{12bp}{15bp}\selectfont
+      \hfill\begin{tabular}{@{}r@{\hspace{3mm}}c@{\hspace{1mm}}c@{}}
+        Chairman & \underline{\makebox[58mm]{\@profA}} & \approvalstamp\\[7mm]
+                 & \underline{\makebox[58mm]{\@profB}} & \approvalstamp\\[7mm]
+                 & \underline{\makebox[58mm]{\@profC}} & \approvalstamp
+      \end{tabular}\hspace*{7mm}}
+    \frontposition{.884}{.08}{\frontblock{14bp}{20bp}{The Graduate School Council\\Kyungpook National University}}
+    \null
   \end{titlepage}
 }
 
@@ -293,7 +211,7 @@
 
     \vspace{0.2cm}
     \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefontit{School of Electronics Engineering \\ The Graduate School}}
+    {\fontsize{12pt}{14.8pt}\titlefontit{\@department \\ The Graduate School}}
     \end{Center}
 
     \begin{Center}
@@ -315,35 +233,20 @@
 \newcommand*{\departmentkorean}[1]{\gdef\@departmentkorean{#1}}
 \newcommand*{\titlekorean}[1]{\gdef\@titlekorean{#1}}
 \newcommand*{\makeabstractheaderkorean}{%
-    \vspace{\baselineskip}
-    \begin{table}[h!]
-    \centering
-        \begin{tabular}{p{10cm}}
-            {\centering\setstretch{1.7}\fontsize{14pt}{16.8pt}\titlefont{\@titlekorean}\par}
-        \end{tabular}
-    \end{table}
-
-    \setstretch{1}
-    \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefont{\@authorkorean}\par}
-    \end{Center}\par
-
-    \vspace{\baselineskip}
-    \vspace{0.2cm}
-    \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefontregular{\@departmentkorean}}
-    \end{Center}
-
-    \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefontregular{(지도교수 \quad \@supervisorkorean)}\par}
-    \end{Center}\par
-
-    \vspace{\baselineskip}
-    \vspace{\baselineskip}
-    \setstretch{2.0}
-    \begin{FlushLeft}
-    {\fontsize{12pt}{14.8pt}\titlefontregular{(초록)}\par}
-    \end{FlushLeft}\par
+  \begingroup
+    \frontposition{.119}{.055}{%
+      \titlefont\frontblock{12bp}{15.6bp}{\@titlekorean}}
+    \frontposition{.193}{.05}{%
+      \titlefont\frontblock{10bp}{12bp}{\@authorkorean}}
+    \frontposition{.258}{.085}{%
+      \titlefontregular\frontblock{9bp}{14bp}{%
+        \@departmentkorean\\(지도교수 \@supervisorkorean)}}
+    \frontposition{.375}{.04}{%
+      \raggedright\hspace*{4mm}\titlefontregular
+      \fontsize{12bp}{15.6bp}\selectfont (초\quad 록)\par}
+  \endgroup
+  % Reserve the overlay header's space in the normal text flow.
+  \par\vspace*{\dimexpr.425\paperheight-30mm-\baselineskip\relax}
 }
 
 \endinput
