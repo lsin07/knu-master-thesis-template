@@ -1,0 +1,44 @@
+# Keep LaTeX sources, bibliography, styles, figures (including PDFs),
+# fonts, and shared VS Code configuration under version control.
+
+# Compiled thesis (do not ignore PDF source figures).
+/thesis.pdf
+/thesis.dvi
+/thesis.xdv
+/thesis.ps
+
+# LaTeX auxiliary files, logs, and navigation data.
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.synctex(busy)
+*.synctex.gz(busy)
+
+# Generated bibliography data (keep .bib and .bst sources).
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# Generated indexes and glossaries (keep .ist source styles).
+*.idx
+*.ind
+*.ilg
+*.glo
+*.gls
+*.glg
+*.acn
+*.acr
+*.alg
+*.glsdefs
+
+# Dedicated build output directories, if used.
+/build/
+/out/

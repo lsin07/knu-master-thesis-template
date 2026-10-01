@@ -1,4 +1,4 @@
-% LaTeX style file for Ph.D. thesis document
+% LaTeX style file for Master of Science thesis document
 % Institution: Kyungpook National University (KNU)
 % 
 % (c) Gwenaelle Cunha Sergio (gwena.cs@gmail.com)
@@ -14,7 +14,7 @@
 % Use \RequirePackage instead of \usepackage
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{thesis}
-  [2020/03/21 v0.01 LaTeX package for KNU's Ph.D. Thesis]
+  [2020/03/21 v0.01 LaTeX package for KNU's Master of Science Thesis]
 
 % Document spacing
 \RequirePackage[paperheight=11.69in,paperwidth=8.27in,left=1.57in,right=1.57in,top=1.8in,bottom=1.9in,headheight=1in]{geometry}
@@ -31,9 +31,11 @@
 % Section with Roman Numerals %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{fontspec} % Requires xelatex compiler
-\RequirePackage{times} %\setmainfont{Times New Roman}
-\RequirePackage[T1]{fontenc}
+% Unicode Times-compatible font; keep XeLaTeX Unicode encoding for ko.TeX.
+\setmainfont{TeX Gyre Termes}
 \RequirePackage{kotex} % for korean text
+% Use the bundled Batang font for Korean body text.
+\setmainhangulfont{batang.ttc}[Path = fonts/, AutoFakeBold = 2, AutoFakeSlant = 0.2]
 \RequirePackage[subfigure]{tocloft}
 \RequirePackage{titlesec}
 \RequirePackage{chngpage}
@@ -122,9 +124,8 @@
   \vspace{\baselineskip}
   \begin{Center}
 %   \setmainfont{Times}
-  \textbf{Thesis for the Degree of Ph. D.}\par
+  \textbf{Thesis for the Degree of Master of Science}\par
 %   \fontsize{12pt}{25.2pt}
-%   \titleheaderfont{Thesis for the Degree of Ph}\titlefontregular{.}\titleheaderfont{ D}\titlefontregular{.}\par
   \end{Center}
 
   % Title
@@ -187,8 +188,6 @@
 \newcommand*{\profA}[1]{\gdef\@profA{#1}}
 \newcommand*{\profB}[1]{\gdef\@profB{#1}}
 \newcommand*{\profC}[1]{\gdef\@profC{#1}}
-\newcommand*{\profD}[1]{\gdef\@profD{#1}}
-\newcommand*{\profE}[1]{\gdef\@profE{#1}}
 \newcommand*{\makeinnercover}{
   \begin{titlepage}
 
@@ -216,7 +215,7 @@
     \end{Center}
 
     \begin{Center}
-    {\fontsize{12pt}{14.8pt}\titlefont Approved as a qualified thesis of \@author \\ for the degree of Ph.D. by the Evaluation Committee}
+    {\fontsize{12pt}{14.8pt}\titlefont Approved as a qualified thesis of \@author \\ for the degree of Master of Science by the Evaluation Committee}
     \end{Center}
 
     % \begin{Center}
@@ -241,8 +240,6 @@
         {\fontsize{12pt}{14.8pt}\titlefontregular Chairperson} & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profA}}\\
             & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profB}}\\
             & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profC}}\\
-            & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profD}}\\
-            & \underline{\makebox[2in][c]{\fontsize{12pt}{14.8pt}\titlefont \@profE}}\\
         \end{tabular}
     \end{flushright}
     \vspace{\baselineskip}
