@@ -6,7 +6,7 @@
 
 > **용지 규격 주의:** 이 템플릿의 PDF는 일반적인 **A4(210 × 297mm)가 아닌 사륙배판(190 × 260mm)**으로 생성됩니다. 용지 크기는 `thesis.sty`의 `geometry` 설정에 지정되어 있습니다. 인쇄·제본 시 이 규격을 확인하고, 원래 크기를 유지하려면 인쇄 배율을 **실제 크기(100%)**로 설정하세요. “A4에 맞춤”을 선택하면 문서가 확대되거나 배치가 달라질 수 있습니다.
 
-경북대학교(KNU) 이학석사 학위논문 작성을 위한 LaTeX 템플릿입니다. **Gwenaelle Cunha Sergio**와 **Dennis Singh Moirangthem**이 작성한 Overleaf의 [PhD Thesis Template - KNU](https://www.overleaf.com/latex/templates/phd-thesis-template-knu/wzwwnhnmbdjq)를 수정했습니다. 표지, 심사위원 승인 페이지, 목차, 그림·표 목록, 참고문헌, 영문·국문 초록을 포함합니다.
+경북대학교(KNU) 이학석사 학위논문 작성을 위한 LaTeX 템플릿입니다. **Gwenaelle Cunha Sergio**와 **Dennis Singh Moirangthem**이 작성한 Overleaf의 [PhD Thesis Template - KNU](https://www.overleaf.com/latex/templates/phd-thesis-template-knu/wzwwnhnmbdjq)를 수정했습니다. 표지, 심사위원 승인 페이지, 목차, 그림·표 목록, 참고문헌, 국문 초록을 포함합니다.
 
 XeLaTeX으로 컴파일하며, 영문 기본 글꼴은 TeX Gyre Termes를 사용합니다. 한글 본문과 표지 등에는 `fonts/`의 글꼴 파일을 사용합니다. 제출 전에는 소속 학과의 논문 작성 지침과 최종 PDF를 대조하세요.
 
@@ -77,7 +77,7 @@ latexmk -c thesis.tex
 
 1. **논문 정보를 입력합니다.** `thesis.tex`의 `\title`, `\author`, `\submitdate`, `\supervisor`, `\department`와 심사위원 `\profA`, `\profB`, `\profC`를 수정하세요. 국문 정보인 `\titlekorean`, `\authorkorean`, `\supervisorkorean`, `\departmentkorean`도 입력합니다. 필요한 곳에는 `\\`로 줄바꿈을 넣을 수 있습니다. 표지에는 지도교수 필드 앞에 “Supervised by Professor”가 자동으로 붙습니다.
 2. **예제 본문을 교체합니다.** `tex/introduction.tex`, `tex/sections.tex`, `tex/adding_equations.tex`, `tex/adding_refs.tex`, `tex/conclusion.tex`를 수정하세요. `article` 클래스를 사용하므로 본문의 큰 구분은 `\chapter`가 아니라 `\section`으로 시작합니다.
-3. **초록을 작성합니다.** `tex/abstract_english.tex`와 `tex/abstract_korean.tex`의 예제 문장을 교체하세요. 영문 초록의 학부명은 현재 `thesis.sty`의 `\makeabstractheader`에 직접 적혀 있으므로 필요하면 해당 부분도 수정합니다.
+3. **국문 초록을 작성합니다.** `tex/abstract_korean.tex`의 예제 문장을 교체하세요. 영문 초록은 현재 PDF와 목차에 포함하지 않습니다. `tex/abstract_english.tex`는 선택적으로 사용할 수 있도록 보관합니다.
 4. **참고문헌을 추가합니다.** `bibliography.bib`에 항목을 넣고 `\cite{lin2004rouge}`처럼 키로 인용합니다. 인용을 수정한 뒤에는 전체 빌드를 실행하세요.
 5. **그림을 추가합니다.** `figures/`에 파일을 넣고 `\includegraphics`, `\caption`, `\label`을 사용합니다. `tex/sections.tex`의 예제를 참고하세요.
 

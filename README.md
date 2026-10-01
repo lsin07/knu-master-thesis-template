@@ -6,7 +6,7 @@
 
 > **Paper size:** This template produces a PDF in **190 × 260 mm (4×6 baepan)** format, **not standard A4 (210 × 297 mm)**. The dimensions are specified in the `geometry` settings in `thesis.sty`. Confirm this size when printing or binding, and select **Actual size (100%)** to preserve the intended dimensions. Selecting “Fit to A4” may enlarge the document or change its placement.
 
-A LaTeX template for a Master of Science thesis at Kyungpook National University (KNU), adapted from the [PhD Thesis Template - KNU on Overleaf](https://www.overleaf.com/latex/templates/phd-thesis-template-knu/wzwwnhnmbdjq) by **Gwenaelle Cunha Sergio** and **Dennis Singh Moirangthem**. It includes covers, a committee approval page, contents, lists of figures and tables, references, and English and Korean abstracts.
+A LaTeX template for a Master of Science thesis at Kyungpook National University (KNU), adapted from the [PhD Thesis Template - KNU on Overleaf](https://www.overleaf.com/latex/templates/phd-thesis-template-knu/wzwwnhnmbdjq) by **Gwenaelle Cunha Sergio** and **Dennis Singh Moirangthem**. It includes covers, a committee approval page, contents, lists of figures and tables, references, and a Korean abstract.
 
 This version uses XeLaTeX, TeX Gyre Termes for the main Latin font, and font files in `fonts/` for Korean text and cover typography. Check the final layout against your department's submission requirements.
 
@@ -77,7 +77,7 @@ latexmk -c thesis.tex
 
 1. **Fill in thesis information** in `thesis.tex`: `\title`, `\author`, `\submitdate`, `\supervisor`, `\department`, and committee members `\profA`, `\profB`, `\profC`. Set `\titlekorean`, `\authorkorean`, `\supervisorkorean`, and `\departmentkorean` as well. Use `\\` for explicit line breaks where needed. The cover already adds “Supervised by Professor” before the supervisor field.
 2. **Replace the example body** in `tex/introduction.tex`, `tex/sections.tex`, `tex/adding_equations.tex`, `tex/adding_refs.tex`, and `tex/conclusion.tex`. The template uses the `article` class: start main divisions with `\section`, not `\chapter`.
-3. **Write both abstracts** in `tex/abstract_english.tex` and `tex/abstract_korean.tex`, replacing the filler text. The English abstract's school name is currently hard-coded in `\makeabstractheader` in `thesis.sty`; edit it there if needed.
+3. **Write the Korean abstract** in `tex/abstract_korean.tex`, replacing the filler text. The English abstract is currently excluded from the PDF and table of contents. `tex/abstract_english.tex` is retained for optional use.
 4. **Add references** to `bibliography.bib` and cite their keys, for example `\cite{lin2004rouge}`. Run the complete build after changing citations.
 5. **Add figures** under `figures/`, and use `\includegraphics`, `\caption`, and `\label`; see `tex/sections.tex` for examples.
 
