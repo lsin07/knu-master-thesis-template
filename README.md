@@ -2,8 +2,10 @@
 
 [한국어 안내](README.ko.md)
 
-> **Notice:** This is an unofficial template. It is not officially distributed by Kyungpook National University or its School of Electronic and Electrical Engineering. Always follow the officially distributed thesis format and submission guidelines provided by the university and your school or department; those requirements take precedence over this template.
+> [!IMPORTANT]
+> This is an unofficial template. It is not officially distributed by Kyungpook National University or its School of Electronic and Electrical Engineering. Always follow the officially distributed thesis format and submission guidelines provided by the university and your school or department; those requirements take precedence over this template.
 
+> [!WARNING]
 > **Paper size:** This template produces a PDF in **190 × 260 mm (4×6 baepan)** format, **not standard A4 (210 × 297 mm)**. The dimensions are specified in the `geometry` settings in `thesis.sty`. Confirm this size when printing or binding, and select **Actual size (100%)** to preserve the intended dimensions. Selecting “Fit to A4” may enlarge the document or change its placement.
 
 A LaTeX template for a Master of Science thesis at Kyungpook National University (KNU), adapted from the [PhD Thesis Template - KNU on Overleaf](https://www.overleaf.com/latex/templates/phd-thesis-template-knu/wzwwnhnmbdjq) by **Gwenaelle Cunha Sergio** and **Dennis Singh Moirangthem**. It includes covers, a committee approval page, contents, lists of figures and tables, references, and a Korean abstract.
